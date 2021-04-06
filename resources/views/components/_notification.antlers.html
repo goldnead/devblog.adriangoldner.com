@@ -1,0 +1,17 @@
+{{# A notification that can be included. Currently used in `resources/views/page_builder/_form.antlers.html`. #}}
+<div class="rounded {{ if type == 'error' }}bg-error-50{{ elseif type == 'success'}}bg-success-50{{ /if }} p-4 {{ class }}">
+    <div class="flex">
+        <div class="flex-shrink-0">
+            {{ if type == "error" }}
+                {{ svg:error class="h-5 w-5 text-error-400 fill-current transition-colors" alt="" aria-hidden="true" }}
+            {{ elseif type == "success" }}
+                {{ svg:success class="h-5 w-5 text-success-400 fill-current transition-colors" alt="" aria-hidden="true" }}
+            {{ /if }}
+        </div>
+        <div class="ml-3">
+            <h3 class="text-sm leading-5 font-bold {{ if type == 'error' }}text-error-800{{ elseif type == 'success' }}text-success-800{{ /if }}" {{ attribute }}>
+                {{ content }}
+            </h3>
+        </div>
+    </div>
+</div>
