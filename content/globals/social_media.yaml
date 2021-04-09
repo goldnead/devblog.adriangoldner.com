@@ -1,1 +1,13 @@
 title: 'Social media'
+data:
+  social_media:
+    -
+      url: goldnead/devblog.adriangoldner.com
+      prefix: 'https://www.github.com/'
+      type: github
+      enabled: true
+    -
+      url: adriangoldner
+      prefix: 'https://www.instagram.com/'
+      type: instagram
+      enabled: true
