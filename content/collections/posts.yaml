@@ -1,0 +1,12 @@
+title: Posts
+template: default
+layout: layout
+mount: home
+revisions: false
+route: '/{slug}'
+date: true
+sort_dir: asc
+blueprint: 
+date_behavior:
+  past: public
+  future: private
