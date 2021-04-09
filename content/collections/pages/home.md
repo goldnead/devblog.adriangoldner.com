@@ -1,7 +1,7 @@
 ---
-title: Home
+title: 'Coding for Websites'
 updated_by: d7df5418-4d2d-48d9-8679-55bace5005eb
-updated_at: 1617985781
+updated_at: 1617985893
 seo_noindex: false
 seo_nofollow: false
 seo_canonical_type: entry
