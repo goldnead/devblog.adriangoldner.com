@@ -1,64 +1,76 @@
-<p align="center">
-  <img src="https://cdn.studio1902.nl/assets/statamic-peak/statamic-peak-logo.png?v=2" width="160" alt="Statamic Peak Logo" />
-</p>
-<h1 align="center">
-  Statamic Starter Kit
-</h1>
+# devblog.adriangoldner.com
+This is my personal development Blog over at devblog.adriangoldner.com
 
-![Statamic 3.0+](https://img.shields.io/badge/Statamic-3.0+-FF269E?style=for-the-badge&link=https://statamic.com)
+Feel Free to play around with the code. You can read everything that's going on with the code here over at my blog.
 
-Statamic Peak is an opinionated starter kit for all your Statamic sites. It's design agnostic but comes bundled with tools like Tailwind and AlpineJS and a workflow you can use to build anything you want. Peak features a page builder, a rich collection of starter templates, fieldsets, blueprints, SEO functionality, configuration and more to get you started on your clients' site straight away. Peak is easy to extend or edit to fit your clients' website needs. 
+Cheers!
 
-The aim of Peak is to make it easy to start new projects as they often share much of the same principles. Whether you're new to Statamic or a veteran, there will be something interesting in here for you. Please participate and discuss on how to make our websites better.
+## Installation instructions
 
-[Read the documentation](https://peak.studio1902.nl)
+1. run `composer install`
+2. run `php please make:user`
+3. run `npm i` && `npm run watch` (or `npm run dev`)
 
-### Getting started
+## Environment file contents
 
-* [Browser support](https://peak.studio1902.nl/getting-started/browser-support.html)
-* [Knowledge assumptions](https://peak.studio1902.nl/getting-started/knowledge-assumptions.html)
-* [Installation](https://peak.studio1902.nl/getting-started/installation.html)
-* [Tailwind and css config](https://peak.studio1902.nl/getting-started/tailwind-css.html)
+### Development
 
-### Features
+```env
+Dump your .env values here with senstive data removed.
+```
 
-* [Assets](https://peak.studio1902.nl/features/assets.html)
-* [Bard](https://peak.studio1902.nl/features/bard.html)
-* [Buttons](https://peak.studio1902.nl/features/buttons.html)
-* [Dark mode (off by default)](https://peak.studio1902.nl/features/dark-mode.html)
-* [Favicons](https://peak.studio1902.nl/features/favicons.html)
-* [Forms](https://peak.studio1902.nl/features/forms.html)
-* [Globals](https://peak.studio1902.nl/features/globals.html)
-* [Navigation](https://peak.studio1902.nl/features/navigation.html)
-* [Page builder](https://peak.studio1902.nl/features/page-builder.html)
-* [Pagination](https://peak.studio1902.nl/features/pagination.html)
-* [Redirects](https://peak.studio1902.nl/features/redirects.html)
-* [Search (off by default)](https://peak.studio1902.nl/features/search.html)
-* [SEO](https://peak.studio1902.nl/features/seo.html)
-* [Typography](https://peak.studio1902.nl/features/typography.html)
+### Production
 
-### Other
+```env
+Dump your .env values here with senstive data removed.
+```
 
-* [Configuration changes](https://peak.studio1902.nl/other/configuration-changes.html)
-* [Deployment script](https://peak.studio1902.nl/other/deployment-script.html)
-* [Focus-visible](https://peak.studio1902.nl/other/focus-visible.html)
-* [Lighthouse](https://peak.studio1902.nl/other/lighthouse.html)
-* [Modernizr](https://peak.studio1902.nl/other/localization.html)
-* [Localization and template strings](https://peak.studio1902.nl/other/localization.html)
-* [Reduced motion](https://peak.studio1902.nl/other/reduced-motion.html)
-* [Tags](https://peak.studio1902.nl/other/tags.html)
-* [Toolbar](https://peak.studio1902.nl/other/toolbar.html)
-* [Upcoming features](https://peak.studio1902.nl/other/upcoming-features.html)
-* [Warm all caches](https://peak.studio1902.nl/other/warm-all-caches.html)
+## NGINX config
 
-### Contributing and license
+Add the following to your NGINX config __inside the server block__ enable static resource caching:
+```
+expires $expires;
+```
 
-## Contributing
-<span id="contributing"></span>
+And this __outside the server block__:
+```
+map $sent_http_content_type $expires {
+    default    off;
+    text/css    max;
+    ~image/    max;
+    application/javascript    max;
+    application/octet-stream    max;
+}
+```
 
-Contributions and discussions are always welcome, no matter how large or small. Treat each other with respect. Read the [Code of Conduct](https://github.com/studio1902/statamic-peak/blob/main/.github/CODE_OF_CONDUCT.md).
+## Deploy script Forge
 
-## License
-<span id="license"></span>
+```bash
+# don't deploy if we just changed something on production itself
+if [[ $FORGE_DEPLOY_MESSAGE =~ "[BOT]" ]]; then
+    echo "Automatically committed on production. Nothing to deploy."
+    exit 0
+fi
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information. Statamic itself is commercial software and has its' own license.
+# change dir, reset, pull & install composer dependencies
+cd $FORGE_SITE_PATH
+git reset --hard && git clean -df
+git pull origin git pull origin $FORGE_SITE_BRANCH
+$FORGE_COMPOSER install --no-interaction --prefer-dist --optimize-autoloader
+
+# Build them assets!
+yarn
+yarn production
+
+# And finally clear & warm the caches
+$FORGE_PHP artisan cache:clear # Clear the Laravel application cache.
+$FORGE_PHP artisan config:cache # Clear and refresh the Laravel config cache.
+$FORGE_PHP artisan route:cache # Clear and refresh the Laravel route cache.
+$FORGE_PHP artisan statamic:stache:warm # Warm the Statamic stache.
+$FORGE_PHP please social-shots:warm #warm social media image generation
+$FORGE_PHP artisan storage:link # link public storage path to public directory
+
+# restart php if necessary
+( flock -w 10 9 || exit 1
+    echo 'Restarting FPM...'; sudo -S service $FORGE_PHP_FPM reload ) 9>/tmp/fpmlock
+```
