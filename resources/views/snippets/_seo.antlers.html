@@ -109,6 +109,8 @@
     <meta property="og:image" content="{{ glide:og_image width='1200' height='630' fit='crop_focal' absolute="true" }}">
 {{ elseif seo:og_image }}
     <meta property="og:image" content="{{ glide:seo:og_image width='1200' height='630' fit='crop_focal' absolute="true" }}">
+{{ else }}
+  <meta property="og:image" content="{{ social-shots:og }}">
 {{ /if }}
 
 {{# Twitter #}}
