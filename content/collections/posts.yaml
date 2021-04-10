@@ -1,5 +1,5 @@
 title: Posts
-template: default
+template: post
 layout: layout
 mount: home
 taxonomies:
