@@ -1,0 +1,23 @@
+title: Alert
+fields:
+  -
+    handle: text_rich
+    field: common.text_rich
+  -
+    handle: alert_type
+    field:
+      options:
+        info: Info
+        warning: Warning
+        success: Success
+        error: Error
+      multiple: false
+      clearable: false
+      searchable: true
+      taggable: false
+      push_tags: false
+      cast_booleans: false
+      display: Type
+      type: select
+      icon: select
+      listable: hidden

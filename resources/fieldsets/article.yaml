@@ -46,6 +46,11 @@ fields:
           fields:
             -
               import: pull_quote
+        alert:
+          display: 'Alert'
+          fields:
+            -
+              import: alert
         table:
           display: 'Table'
           fields:

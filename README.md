@@ -55,7 +55,7 @@ fi
 # change dir, reset, pull & install composer dependencies
 cd $FORGE_SITE_PATH
 git reset --hard && git clean -df
-git pull origin git pull origin $FORGE_SITE_BRANCH
+git pull origin $FORGE_SITE_BRANCH
 $FORGE_COMPOSER install --no-interaction --prefer-dist --optimize-autoloader
 
 # Build them assets!

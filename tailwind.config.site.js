@@ -13,7 +13,7 @@ const colors = require('tailwindcss/colors')
 module.exports = {
   theme: {
     // Here we define the default colors available. If you want to include
-    // all default Tailwind colors you should extend the colors instead. 
+    // all default Tailwind colors you should extend the colors instead.
     colors: {
       transparent: 'transparent',
       black:   '#000',
@@ -29,23 +29,24 @@ module.exports = {
       notice: colors.amber,
       // Success styling colors (currently default TW Amber).
       success: colors.green,
+      info: colors.indigo,
     },
     extend: {
       fontFamily: {
         mono: [
-          // Use a custom mono font for this site by changing 'Anonymous' to the 
+          // Use a custom mono font for this site by changing 'Anonymous' to the
           // font name you want and uncommenting the following line.
           // 'Anonymous',
           ...defaultTheme.fontFamily.mono,
         ],
         sans: [
-          // Use a custom sans serif font for this site by changing 'Gaultier' to the 
+          // Use a custom sans serif font for this site by changing 'Gaultier' to the
           // font name you want and uncommenting the following line.
           // 'Gaultier',
           ...defaultTheme.fontFamily.sans,
         ],
         serif: [
-          // Use a custom serif font for this site by changing 'Lavigne' to the 
+          // Use a custom serif font for this site by changing 'Lavigne' to the
           // font name you want and uncommenting the following line.
           // 'Lavigne',
           ...defaultTheme.fontFamily.serif,
@@ -93,7 +94,7 @@ module.exports = {
     // Custom components for this particular site.
     plugin(function({ addComponents, theme }) {
       const components = {
-        
+
       }
       addComponents(components)
     }),

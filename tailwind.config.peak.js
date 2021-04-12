@@ -2,13 +2,18 @@
 // Tailwind custom Peak configuration
 //--------------------------------------------------------------------------
 //
-// Here we define base styles, components and utilities used by Peak. 
+// Here we define base styles, components and utilities used by Peak.
 //
 
 const _ = require('lodash')
 const plugin = require('tailwindcss/plugin')
 
 module.exports = {
+  variants: {
+    extend: {
+      backgroundColor: ['active'],
+    }
+  },
   theme: {
     extend: {
       keyframes: (theme) => ({
@@ -36,14 +41,14 @@ module.exports = {
     plugin(function({ addBase, theme }) {
       addBase({
         ':root': {
-          // Fluid typography from 1 rem to 1.15 rem with fallback to 16px. 
+          // Fluid typography from 1 rem to 1.15 rem with fallback to 16px.
           fontSize: '16px',
           'font-size': 'clamp(1rem, 1.6vw, 1.2rem)',
-          // Safari resize fix. 
+          // Safari resize fix.
           minHeight: '0vw',
         },
         // Used to hide alpine elements before being rendered.
-        '[x-cloak]': { 
+        '[x-cloak]': {
           display: 'none !important'
         },
         // Implement the focus-visible polyfill: https://github.com/WICG/focus-visible
@@ -73,7 +78,7 @@ module.exports = {
           '.size-lg': {
             gridColumn: 'span 8 / span 8',
             gridColumnStart: '3',
-          }, 
+          },
           '.size-xl': {
             gridColumn: 'span 10 / span 10',
             gridColumnStart: '2',
@@ -93,7 +98,7 @@ module.exports = {
           '.size-lg': {
             gridColumn: 'span 8 / span 8',
             gridColumnStart: '3',
-          }, 
+          },
           '.size-xl': {
             gridColumn: 'span 10 / span 10',
             gridColumnStart: '2',
@@ -118,7 +123,7 @@ module.exports = {
 
     plugin(function({ addComponents, theme }) {
       const components = {
-        // The main wrapper for all sections on our website. Has a max width and is centered. 
+        // The main wrapper for all sections on our website. Has a max width and is centered.
         '.fluid-container': {
           width: '100%',
           maxWidth: theme('screens.xl'),
@@ -133,7 +138,7 @@ module.exports = {
           height: '100%',
           overflow: 'hidden',
         },
-        // The outer grid where all block builder blocks are a child of. Spreads out all blocks 
+        // The outer grid where all block builder blocks are a child of. Spreads out all blocks
         // vertically with a uniform space between them.
         '.outer-grid': {
           width: '100%',
@@ -141,8 +146,8 @@ module.exports = {
           rowGap: theme('spacing.12'),
           paddingTop: theme('spacing.12'),
           paddingBottom: theme('spacing.12'),
-          // If the last child of the outer grid is full width (e.g. when it has a full width 
-          // colored background), give it negative margin bottom to get it flush to your 
+          // If the last child of the outer grid is full width (e.g. when it has a full width
+          // colored background), give it negative margin bottom to get it flush to your
           // sites footer.
           '& > *:last-child.w-full': {
             marginBottom: `-${theme('spacing.12')}`,
@@ -182,7 +187,7 @@ module.exports = {
 
     plugin(function({ addUtilities, theme, variants }) {
       const newUtilities = {
-        // Add a ? utility to quickly highlight an element. 
+        // Add a ? utility to quickly highlight an element.
         '.\?': {
           'animation': 'highlight 0.5s ease-in-out alternate infinite',
         },

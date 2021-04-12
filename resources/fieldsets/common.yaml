@@ -44,7 +44,7 @@ fields:
       replicator_preview: false
       localizable: true
       listable: hidden
-      display: Text
+      display: Text Rich
   -
     handle: text_basic
     field:
@@ -67,14 +67,14 @@ fields:
       replicator_preview: false
       localizable: true
       listable: hidden
-      display: Text
+      display: Text Basic
   -
     handle: text_plain
     field:
       type: textarea
       localizable: true
       listable: hidden
-      display: Text
+      display: Text Plain
   -
     handle: size
     field:
