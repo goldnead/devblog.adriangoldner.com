@@ -1,0 +1,48 @@
+title: Code
+fields:
+  -
+    handle: code
+    field:
+      restrict: false
+      automatic_line_breaks: true
+      automatic_links: false
+      escape_markup: false
+      smartypants: false
+      antlers: false
+      display: Code
+      type: markdown_highlight
+      icon: code-block
+      listable: hidden
+  -
+    handle: language
+    field:
+      options:
+        php: PHP
+        yaml: YAML
+        css: css
+        js: js
+        custom: Custom
+        auto: Auto
+      multiple: false
+      clearable: false
+      searchable: true
+      taggable: true
+      push_tags: false
+      cast_booleans: false
+      display: Language
+      type: select
+      icon: select
+      width: 75
+      listable: hidden
+  -
+    handle: custom_language
+    field:
+      input_type: text
+      antlers: false
+      display: 'Custom Language'
+      type: text
+      icon: text
+      width: 25
+      listable: hidden
+      if:
+        language: 'equals custom'

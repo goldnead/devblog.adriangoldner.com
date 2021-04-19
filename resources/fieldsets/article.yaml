@@ -14,6 +14,7 @@ fields:
         - quote
         - removeformat
         - anchor
+        - codeblock
       save_html: false
       toolbar_mode: fixed
       link_noopener: false
@@ -47,12 +48,12 @@ fields:
             -
               import: pull_quote
         alert:
-          display: 'Alert'
+          display: Alert
           fields:
             -
               import: alert
         table:
-          display: 'Table'
+          display: Table
           fields:
             -
               import: table
@@ -61,3 +62,13 @@ fields:
           fields:
             -
               import: video
+        code:
+          display: Code
+          fields:
+            -
+              import: code
+      enable_input_rules: true
+      enable_paste_rules: true
+      link_collections:
+        - posts
+        - pages

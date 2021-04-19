@@ -30,6 +30,7 @@ module.exports = {
       // Success styling colors (currently default TW Amber).
       success: colors.green,
       info: colors.indigo,
+      gray: colors.gray
     },
     extend: {
       fontFamily: {

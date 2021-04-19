@@ -1,4 +1,4 @@
-<div class="size-md prose max-w-none px-6 py-4 border-0 rounded relative mb-4 bg-{{ alert_type }}-200">
+<div class="size-md prose max-w-none px-6 py-4 border-0 rounded relative mb-4 {{ if alert_type === "info" }}bg-info-200{{ /if }}">
   <span class="inline-block align-middle">
     <span class="text-sm mr-2 font-bold uppercase">{{ alert_type }}:</span>{{ text_rich | strip_tags:p }}
   </span>

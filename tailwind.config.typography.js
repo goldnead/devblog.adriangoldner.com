@@ -9,7 +9,7 @@
 
 const plugin = require('tailwindcss/plugin')
 
-module.exports = { 
+module.exports = {
   theme: {
     extend: {
       typography: (theme) => ({
@@ -35,21 +35,43 @@ module.exports = {
               borderColor: theme('colors.primary.200'),
             },
             hr: {
-              borderColor: theme('colors.neutral.100'), 
+              borderColor: theme('colors.neutral.100'),
             },
-            'ul > li::before': { 
+            'ul > li::before': {
               backgroundColor: theme('colors.neutral.500'),
             },
-            'ol > li::before': { 
+            'ol > li::before': {
               color: theme('colors.neutral.500'),
             },
-            'ul > li p, ol > li p': { 
+            'ul > li p, ol > li p': {
               marginTop: '0em !important',
               marginBottom: '0em !important',
             },
             pre: {
               whiteSpace: 'pre-wrap',
+              color: theme("colors.grey.1000"),
+              backgroundColor: theme("colors.gray.100"),
             },
+            "pre code::before": {
+              "padding-left": "unset"
+            },
+            "pre code::after": {
+              "padding-right": "unset"
+            },
+            code: {
+              backgroundColor: theme("colors.grey.100"),
+              color: "#DD1144",
+              fontWeight: "400",
+              "border-radius": "0.25rem"
+            },
+            "code::before": {
+              content: '""',
+              "padding-left": "0.25rem"
+            },
+            "code::after": {
+              content: '""',
+              "padding-right": "0.25rem"
+            }
           }
         }
       }),

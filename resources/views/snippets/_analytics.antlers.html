@@ -1,1 +1,5 @@
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "01a563b1c4cb4968918a6aeb0e3afc86"}'></script><!-- End Cloudflare Web Analytics -->
+{{ if environment === "production" }}
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "01a563b1c4cb4968918a6aeb0e3afc86"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+{{ /if }}

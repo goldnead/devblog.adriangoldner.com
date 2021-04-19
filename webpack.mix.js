@@ -5,7 +5,7 @@ mix.js('resources/js/site.js', 'public/js/site.js')
 
 mix.postCss('resources/css/site.css', 'public/css/site.css', [
     require('postcss-import'),
-    require('@tailwindcss/jit'),
+    require('tailwindcss'),
     require('postcss-nested'),
     require('postcss-focus-visible'),
     require('autoprefixer'),
@@ -14,8 +14,8 @@ mix.postCss('resources/css/site.css', 'public/css/site.css', [
 mix.browserSync({
     proxy: process.env.APP_URL,
     files: [
-        'resources/views/**/*.html', 
-        'public/**/*.(css|js)', 
+        'resources/views/**/*.html',
+        'public/**/*.(css|js)',
     ],
     // Option to open in non default OS browser.
     // browser: "firefox",
