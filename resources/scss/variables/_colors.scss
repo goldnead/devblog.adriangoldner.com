@@ -1,0 +1,58 @@
+:root {
+  @include colors(
+    (
+      color-green: #92be81,
+      color-blue: #3c6885,
+      color-gray: #bdc2c9,
+      color-red: #c94247,
+
+      // Main Theme colors
+      color-dark: #1e181d,
+      color-light: var(--color-gray-100),
+      color-accent: var(--color-red),
+
+      // contrast colors
+      color-black: #000000,
+      color-white: #ffffff,
+
+      // shades
+      color-gray-100: #f5f6f7,
+      color-gray-200: #d9dce0,
+      color-gray-300: #bdc2c9,
+      color-gray-400: #a1a8b2,
+      color-gray-500: #858e9b,
+      color-gray-600: #6b7582,
+      color-gray-700: #545b66,
+      color-gray-800: #3d424a,
+      color-gray-900: #26292e,
+
+      color-blue-100: #d4e2ec,
+      color-blue-200: #b1cbdc,
+      color-blue-300: #8eb3cc,
+      color-blue-400: #6b9cbc,
+      color-blue-500: #4c83a8,
+      color-blue-600: #3c6885,
+      color-blue-700: #2c4d62,
+      color-blue-800: #1c313f,
+      color-blue-900: #0c161c,
+
+      color-primary: var(--color-dark),
+
+      color-danger: var(--color-accent),
+      color-success: green,
+      color-bg-success: green,
+
+      // functional colors
+      color-text-default: var(--color-black),
+      link-color: var(--color-blue),
+      link-color-hover: var(--color-red),
+
+      color-heading: var(--color-black),
+      color-text: var(--color-black),
+
+      background-color: var(--color-white),
+    )
+  );
+
+  --color-dark-200: #{adjust-lightness(var(--color-dark), 4.2)};
+}

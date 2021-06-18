@@ -1,0 +1,29 @@
+{
+  "resources/scripts/cp.js": {
+    "file": "assets/cp.2e361259.js",
+    "src": "resources/scripts/cp.js",
+    "isEntry": true
+  },
+  "resources/scripts/main.js": {
+    "file": "assets/main.cd91a269.js",
+    "src": "resources/scripts/main.js",
+    "isEntry": true,
+    "imports": [
+      "_vendor.455a95e3.js"
+    ],
+    "css": [
+      "assets/main.53fd77bd.css"
+    ]
+  },
+  "resources/scripts/site.js": {
+    "file": "assets/site.2e071fef.js",
+    "src": "resources/scripts/site.js",
+    "isEntry": true,
+    "imports": [
+      "_vendor.455a95e3.js"
+    ]
+  },
+  "_vendor.455a95e3.js": {
+    "file": "assets/vendor.455a95e3.js"
+  }
+}

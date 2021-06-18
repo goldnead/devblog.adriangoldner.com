@@ -1,0 +1,50 @@
+/*
+  Body and Containers
+
+  Styles for <body> and main container
+
+  Markup:
+  <body>
+    <div class="container">
+      ... .header, .footer, .content ...
+    </div>
+  </body>
+
+  Styleguide: Layout - Body
+*/
+
+/**
+ * 1. Prevent certain mobile browsers from automatically zooming fonts.
+ * 2. Border box sizing
+ * 3. Smooth scroll
+ */
+html {
+  -ms-text-size-adjust: 100%; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 1 */
+  box-sizing: border-box; /* 2 */
+  scroll-behavior: smooth; /* 3 */
+}
+
+/**
+ * 1. Set default font styles
+ * 2. Beautiful fonts again
+ * 3. Prevent horizontal scroll
+ */
+body {
+  -moz-osx-font-smoothing: grayscale; /* 2 */
+  -webkit-font-smoothing: antialiased; /* 2 */
+  overflow-x: hidden; /* 3 */
+
+  /*font-family: var(--font-family-base);
+  font-size: var(--font-size-text, 1em);
+  line-height: var(--line-height-base);*/
+  color: var(--color-text-default);
+  background-color: var(--background-color);
+  //font-weight: 400;
+  position: relative;
+}
+
+main {
+  padding-top: var(--nav-height);
+  min-height: 100vh;
+}

@@ -1,0 +1,95 @@
+// To get a consistent vertical Rhythm we must apply the calculations to all
+// elements that should be affected
+//
+// How it works:
+//
+// When defining a new Text-Element the following variables should be used:
+//   --font-size: {px|em|rem} -> the font-size. Has to be in a variable for calculations.
+//   --baseline-multiplier {int} -> Defines how big the line-height will be
+//                                  and will be calculated as a multiple of --baselione
+//   --margin-bottom: {px} -> Does what it says, except it will be added to the
+//                            initial margin-bottom value that is being used to compensate
+//                            the baseline offset.
+@mixin v-rhythm() {
+  // Line-Heights should always be a multiple of --baseline
+  --line-height: calc(var(--baseline) * var(--baseline-multiplier, 1));
+  // the base-line offset is the padding-top value which compensates for the
+  // difference between cap-height and line-height
+  --baseline-offset: calc((var(--line-height) - var(--cap-height) * var(--font-size)) / 2);
+
+  // use font-size & line-height from variables so we can calculate the
+  // spacings.
+  font-size: var(--font-size, var(--font-size-base));
+  line-height: var(--line-height);
+  // push the text down so the baseline matches
+  padding-top: var(--baseline-offset);
+  // compensate top padding at the bottom so the main height remains the
+  // same.
+  margin-bottom: calc((var(--baseline-offset) * -1) + var(--margin-bottom, 0px));
+}
+
+/** Our system will use a 4px base vertical rhythm */
+$verticalRhythmBase: 4;
+
+/** Our system's base font size */
+$baseFontSize: 16;
+
+/**
+ * Calculate the type offset for a given font
+ *
+ * @param {number} $lh - the font's base line height
+ * @param {number} $fontSize - the font's size
+ * @param {number} $descenderHeightScale - the font's descender height as a ratio
+ * @return {number} the offset to be added to a transformY to keep the text in place
+ */
+@function calculateTypeOffset($lh, $fontSize, $descenderHeightScale) {
+  $lineHeightScale: $lh / $fontSize;
+  @return ($lineHeightScale - 1) / 2 + $descenderHeightScale;
+}
+
+/**
+ * The basekick base function
+ *
+ * @param {number} $typeSizeModifier - a multiplier to determine the font size
+ * @param {number} $typeRowSpan - how many rows of our vertical rhythm should the type span
+ * @param {number} $descenderHeightScale - the height of the descender expressed as a ratio of the font
+ * @param {number} $capHeight - the font's cap height expressed as a ratio of the font
+ */
+@mixin basekick($typeSizeModifier, $typeRowSpan, $descenderHeightScale, $capHeight) {
+  $fontSize: $typeSizeModifier * $baseFontSize;
+  $lineHeight: $typeRowSpan * $verticalRhythmBase;
+  $typeOffset: calculateTypeOffset($lineHeight, $fontSize, $descenderHeightScale);
+  $topSpace: $lineHeight - $capHeight * $fontSize;
+  $heightCorrection: 0;
+
+  @if $topSpace > $verticalRhythmBase {
+    $heightCorrection: $topSpace - ($topSpace % $verticalRhythmBase);
+  }
+
+  $preventCollapse: 1;
+
+  font-size: #{$fontSize}px;
+  line-height: #{$lineHeight}px;
+  transform: translateY(#{$typeOffset}em);
+  padding-top: #{$preventCollapse}px;
+  &::before {
+    content: "";
+    margin-top: #{-($heightCorrection + $preventCollapse)}px;
+    display: block;
+    height: 0;
+  }
+}
+
+/**
+ * The Lato mixin to apply basekick styles
+ *
+ * @param {number} $typeSizeModifier - a multiplier for our system's $baseFontSize
+ * @param {number} $typeRowSpan - the height of the descender expressed as a ratio of the font
+ */
+@mixin Lato($typeSizeModifier, $typeRowSpan) {
+  $latoDescenderHeightScale: 0.11;
+  $latoCapHeight: 0.75;
+
+  @include basekick($typeSizeModifier, $typeRowSpan, $latoDescenderHeightScale, $latoCapHeight);
+  font-family: Lato;
+}

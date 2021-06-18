@@ -1,0 +1,57 @@
+.footer {
+  position: relative;
+  width: 100%;
+
+
+  &__bg {
+    width: 100%;
+    margin-top: -36%;
+    margin-bottom: -5%;
+    overflow: hidden;
+    img {
+      width: 100%;
+      transform: scale(1.02);
+    }
+  }
+
+  .footer__content {
+    background-color: var(--color-sand);
+    position: relative;
+    z-index: 2;
+    padding-bottom: var(--space-8);
+
+    .segment {
+      margin-bottom: 0;
+    }
+
+    .footer__nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: var(--space-3);
+    }
+
+    .footer__link {
+      font-size: var(--font-size-4);
+      font-family: "acumin-pro-condensed";
+      --link-color-hover: #CD6141;
+    }
+
+    .footer__copyright {
+      text-align: center;
+      font-family: "apotek-extracond";
+      color: var(--color-white);
+      font-size: var(--font-size-3);
+    }
+
+    .phone {
+      height: 250px;
+      max-width: 250px;
+      margin: 0 auto;
+      margin-bottom: var(--space-3);
+      @include breakpoint(md) {
+        display: none;
+      }
+    }
+  }
+}

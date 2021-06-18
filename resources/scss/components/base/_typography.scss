@@ -1,0 +1,329 @@
+/*
+  Headlines
+
+  Markup:
+  <h1>Überschrift 1</h1>
+  <h2>Überschrift 2</h2>
+  <h3>Überschrift 3</h3>
+  <h4>Überschrift 4</h4>
+
+  Styleguide: Base - Typography
+*/
+html {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-text);
+  line-height: var(--line-height-base);
+  font-size: var(--font-size-text);
+}
+
+a,
+cite,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+p,
+blockquote {
+  @include v-rhythm();
+}
+
+a,
+li,
+p {
+  --cap-height: var(--cap-height-text);
+  --font-size: var(--font-size-base);
+  --baseline-multiplier: 6;
+
+  small {
+    --font-size: var(--font-size-0);
+    font-size: var(--font-size);
+  }
+}
+
+p {
+  --margin-bottom: var(--space-2);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  --cap-height: var(--cap-height-heading);
+  --margin-bottom: var(--space-2);
+  color: var(--color-heading);
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-heading, inherit);
+  text-transform: var(--text-transform-heading, inherit);
+}
+
+.text-component {
+  --cap-height: var(--cap-height-text);
+  color: var(--color-text);
+  font-family: var(--font-family-base);
+  @include v-rhythm();
+  --font-size: var(--font-size-text);
+  --baseline-multiplier: 6;
+  --margin-bottom: var(--space-2);
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+s {
+  text-decoration: line-through;
+}
+
+u {
+  text-decoration: underline;
+}
+
+h1 {
+  --font-size: var(--font-size-7);
+  --baseline-multiplier: 22;
+  --margin-bottom: var(--space-6);
+}
+
+h2 {
+  --font-size: var(--font-size-5);
+  --baseline-multiplier: 14;
+}
+
+h3 {
+  --font-size: var(--font-size-4);
+  --baseline-multiplier: 10;
+}
+
+h4 {
+  --font-size: var(--font-size-3);
+  --baseline-multiplier: 8;
+}
+
+h5 {
+  --font-size: var(--font-size-2);
+  --baseline-multiplier: 7;
+}
+
+h6 {
+  --font-size: var(--font-size-1);
+  font-family: var(--font-family-sans);
+  --cap-height: var(--cap-height-sans);
+  --baseline-multiplier: 7;
+  --heading-font-weight: 400;
+  --text-transform-heading: uppercase;
+}
+
+.text-mono {
+  font-family: var(--font-family-mono);
+  --cap-height: var(--cap-height-mono);
+}
+
+hr {
+  background: var(--color-primary);
+  height: 1px;
+}
+
+mark {
+  background-color: alpha(var(--color-accent), 0.2);
+  color: inherit;
+  padding: 0 var(--space-1);
+}
+
+article,
+.v-rhythm,
+.text-container {
+  display: grid;
+  grid-row-gap: var(--space-4);
+  margin: 0 auto;
+
+  div,
+  li,
+  p,
+  ul,
+  ol {
+    color: var(--color-text, inherit);
+    font-weight: var(--font-weight-text, inherit);
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  figcaption {
+    text-align: center;
+    margin-top: var(--space-2);
+  }
+
+  blockquote {
+    --font-size: var(--font-size-2);
+    --baseline-multiplier: 6;
+    padding-left: var(--space-4);
+    border-left: var(--space-1) solid black;
+
+    > * {
+      --font-size: var(--font-size-2);
+      --baseline-multiplier: 6;
+    }
+  }
+
+  ol,
+  ul {
+    --list-offset: var(--space-4);
+    // items line-height
+    padding-left: 0;
+    list-style: none;
+    @include v-rhythm();
+    --margin-bottom: var(--space-2);
+
+    ol,
+    ul {
+      list-style: none;
+      padding-left: var(--list-offset);
+    }
+
+    li {
+      --margin-bottom: var(--space-1);
+      --baseline-multiplier: 8;
+      padding-left: var(--list-offset);
+      position: relative;
+
+      &::before {
+        width: var(--list-bullet-size);
+        height: var(--list-bullet-size);
+        //margin-left: calc(var(--list-bullet-size) * -1);
+        display: inline-flex;
+        vertical-align: middle;
+        position: absolute;
+        top: calc(var(--list-bullet-size) + var(--space-4));
+        left: 0;//calc(var(--list-bullet-margin-right) * -1);
+      }
+
+      > li:last-child,
+      ol > li:last-child,
+      ul > li:last-child {
+        //--margin-bottom: 0;
+      }
+
+      &:not(.list--border) > li:last-child,
+      ol > li:last-child,
+      ul > li:last-child {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  ul {
+    --list-bullet-size: 6px; // dot width and height
+    --list-bullet-margin-right: 10px; // gap between bullet and content
+    li {
+      &::before {
+        content: '';
+        border-radius: 50%;
+        color: var(--color-primary); // bullet color
+        background-color: currentColor;
+        border: 2px solid currentColor;
+        margin-bottom: 2px;
+      }
+    }
+  }
+
+  ol {
+    --list-bullet-size: var(--space-5); // ⚠️ use px or rem units - circle width and height
+    --list-bullet-margin-right: var(--space-3); // ⚠️ use px or rem units - gap between circle and content
+    counter-reset: list-items;
+
+    li {
+      counter-increment: list-items;
+      padding-left: calc(var(--list-offset) + var(--list-bullet-size) / 2)
+    }
+
+    ol {
+      counter-reset: list-items;
+    }
+
+    li::before {
+      position: absolute;
+      content: counter(list-items);
+      font-size: var(--font-size-0);
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background-color: alpha(var(--color-dark), 0.1);
+      color: var(--color-dark);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      top: calc(var(--list-bullet-size) - 5px);
+      left: 0;
+    }
+
+    ol li::before {
+      background-color: transparent;
+      box-shadow: inset 0 0 0 2px alpha(var(--color-dark), 0.1);
+    }
+  }
+
+  code {
+    background-color: var(--color-gray-400);
+    padding: var(--space-1) var(--space-1);
+    font-family: var(--font-family-mono);
+
+    &::selection {
+      background-color: var(--color-contrast-high);
+      color: var(--color-bg);
+    }
+  }
+
+  pre {
+    @extend .text-mono;
+    --baseline-multiplier: 6;
+    --font-size: var(--font-size-1);
+    @include v-rhythm();
+    background-color: var(--color-gray-400);
+    font-family: var(--font-family-mono);
+    border-radius: var(--radius-md);
+
+    code {
+      background-color: transparent;
+      line-height: 1.45;
+      font-size: var(--font-size-1);
+      display: block;
+      padding: 0;
+      overflow-x: auto;
+      padding: var(--space-2);
+    }
+  }
+}
+
+.show-rhythm {
+  article > *,
+  .text-container > * {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1000;
+      display: block;
+      background: linear-gradient(to bottom, rgba(red, 0.3), rgba(red, 0.3) 1px, transparent 1px, transparent);
+      background-size: 100% var(--baseline);
+      pointer-events: none;
+      opacity: 0.8;
+      transition: opacity 0.25s;
+    }
+
+    &:active::after {
+      opacity: 0;
+    }
+  }
+}

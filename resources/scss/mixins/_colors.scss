@@ -1,0 +1,86 @@
+// define HSL color variable
+@mixin define-color-HSL($color, $hue, $saturation, $lightness) {
+  #{$color}: unquote("hsl(#{$hue}, #{$saturation}, #{$lightness})");
+  #{$color}-h: #{$hue};
+  #{$color}-s: #{$saturation};
+  #{$color}-l: #{$lightness};
+}
+
+// define Color Variable
+@mixin define-color($varName, $color) {
+  // if $color is a string...
+  @if type-of($color) == "string" {
+    // .. if it contains the "var(--" syntax
+    @if str-index($color, "var(--") > 0 {
+      // use the existing color variables and assign them to the new ones
+      // including hsl values.
+      $color: str-replace($color, "var(");
+      $color: str-replace($color, ")");
+      $color-h: var(#{$color+"-h"});
+      $color-s: var(#{$color+"-s"});
+      $color-l: var(#{$color+"-l"});
+
+      #{$varName}: var($color);
+      #{$varName+"-h"}: $color-h;
+      #{$varName+"-s"}: $color-s;
+      #{$varName+"-l"}: $color-l;
+    }
+  }
+  @else if type-of($color) == "color" {
+    $h: hue($color);
+    $s: saturation($color);
+    $l: lightness($color);
+
+    @include define-color-HSL($varName, $h, $s, $l);
+  }
+}
+
+// return color with different opacity value
+@function alpha($color, $opacity) {
+  $color: str-replace($color, "var(");
+  $color: str-replace($color, ")");
+  $color-h: var(#{$color+"-h"});
+  $color-s: var(#{$color+"-s"});
+  $color-l: var(#{$color+"-l"});
+  @return hsla($color-h, $color-s, $color-l, $opacity);
+}
+
+// return color with different lightness value
+@function adjust-lightness($color, $lightnessMultiplier) {
+  $color: str-replace($color, "var(");
+  $color: str-replace($color, ")");
+  $color-h: var(#{$color+"-h"});
+  $color-s: var(#{$color+"-s"});
+  $color-l: var(#{$color+"-l"});
+  @return hsl($color-h, $color-s, calc(#{$color-l} * #{$lightnessMultiplier}));
+}
+
+@function adjust-color($color, $h: 1, $s: 1, $l: 1) {
+  $color: str-replace($color, "var(");
+  $color: str-replace($color, ")");
+  $color-h: var(#{$color+"-h"});
+  $color-s: var(#{$color+"-s"});
+  $color-l: var(#{$color+"-l"});
+
+  $hue: calc(#{$color-h} * #{$h});
+  $saturation: calc(#{$color-s} * #{$s});
+  $lightness: calc(#{$color-l} * #{$l});
+
+  @return hsl($hue, $saturation, $lightness);
+}
+
+// replace substring with another string
+// credits: https://css-tricks.com/snippets/sass/str-replace-function/
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  @return $string;
+}
+
+@mixin colors($colorVariables) {
+  @each $name, $color in $colorVariables {
+    @include define-color(#{"--"+$name}, $color);
+  }
+}

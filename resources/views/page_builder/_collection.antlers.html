@@ -1,12 +1,12 @@
 {{# The collection content block with optional title. #}}
-  <section class="fluid-container grid md:grid-cols-12 gap-y-8 md:gap-8">
+  <section class="collection-container">
     <div class="md:col-start-3 md:col-span-8">
       <div class="w-full flex flex-col items-center px-3">
-        {{ partial:typography/h2 class="mb-4" :content="block:title" }}
+        {{ partial:typography/h2 :content="block:title" }}
 
         {{ block:collection }}
           <article class="flex flex-col shadow my-4">
-            <div class="bg-white flex flex-col justify-start p-6">
+            <div class="text-component">
               {{ tags limit="1" }}
                 <a href="#" class="text-blue-700 text-sm font-bold pb-4">
                   #{{ title }}

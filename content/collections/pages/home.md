@@ -1,7 +1,8 @@
 ---
-title: 'Coding for Websites'
+id: home
+title: Blog
 updated_by: d7df5418-4d2d-48d9-8679-55bace5005eb
-updated_at: 1619881007
+updated_at: 1620399502
 seo_noindex: false
 seo_nofollow: false
 seo_canonical_type: entry
@@ -19,5 +20,4 @@ page_builder:
     enabled: true
 seo_title: 'Coding For Websites – By Adrian Goldner'
 seo_description: 'A simple little Dev-Blog. Join me on my code-blogging journey.'
-id: home
 ---

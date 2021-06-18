@@ -1,0 +1,48 @@
+.segment {
+  @include container();
+  --container-margin: 30px;
+
+  @include breakpoint(md) {
+    --container-margin: var(--space-component);
+  }
+
+  max-width: var(--segment-max-width, map-get($breakpoints, lg));
+  margin-bottom: var(--segment-mb, var(--space-9));
+
+
+  .segment-title {
+    --link-hover-text-decoration: none;
+    --link-color: var(--color-black);
+    @include v-rhythm();
+    --font-size: var(--font-size-base);
+    --baseline-multiplier: 1;
+
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--color-black);
+    border-top: 1px solid var(--color-black);
+    padding-top: calc(var(--space-3) + var(--baseline-offset));
+    margin-top: -1px;
+    margin-bottom: var(--space-4);
+
+    &--no-border {
+      border-top: none;
+      margin-top: 0;
+    }
+
+    a {
+      font-weight: 600;
+    }
+  }
+
+  .segment-seeMore {
+    margin-top: var(--space-5);
+    text-align: center;
+    margin-bottom: calc(var(--space-1) * -1);
+  }
+
+  &--narrow {
+    --segment-max-width: 720px;
+  }
+}

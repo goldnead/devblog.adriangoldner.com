@@ -1,0 +1,25 @@
+.navControls {
+  display: flex;
+  margin-bottom: 32px;
+  max-width: map-get($breakpoints, lg);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  @include container();
+  --container-margin: 30px;
+
+  @include breakpoint(sm) {
+    --container-margin: 30px;
+    padding-top: 81px;
+  }
+
+  @include breakpoint(md) {
+    --container-margin: var(--space-component);
+  }
+
+  padding-top: 60px;
+
+  @include breakpoint(md) {
+    padding-top: 100px;
+  }
+}

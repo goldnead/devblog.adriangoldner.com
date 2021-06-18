@@ -1,0 +1,18 @@
+[class*="aspect-ratio"],
+.aspect-ratio {
+  --aspect-ratio: 16/9;
+  // padding bottom hack
+  height: 0;
+  padding-bottom: calc(100%/(var(--aspect-ratio)));
+
+  // use aspect-ratio property if supported
+  @supports (aspect-ratio: 16/9) {
+    aspect-ratio: var(--aspect-ratio);
+    height: initial;
+    padding-bottom: initial;
+  }
+}
+
+.aspect-ratio-16\:9 {
+  --aspect-ratio: 16/9;
+}

@@ -11,3 +11,13 @@ data:
       prefix: 'https://www.instagram.com/'
       type: instagram
       enabled: true
+    -
+      url: adriangoldner
+      prefix: 'https://www.facebook.com/'
+      type: facebook
+      enabled: true
+    -
+      url: in/adrian-goldner/
+      prefix: 'https://www.linkedin.com/'
+      type: linkedin
+      enabled: true

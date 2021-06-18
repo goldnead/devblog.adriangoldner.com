@@ -10,13 +10,33 @@ sections:
           display: 'General configuration'
           instructions: 'Global site configuration options.'
       -
-        handle: html
+        handle: logo_lg
         field:
-          html: 'This is where you can add site specific configuration options like color options or globally used e-mail addresses.'
-          display: General configuration
-          type: html
-          icon: code
+          mode: grid
+          container: assets
+          folder: /
+          restrict: false
+          allow_uploads: true
+          max_files: 1
+          display: 'Logo:Desktop'
+          type: assets
+          icon: assets
           listable: hidden
+          width: 50
+      -
+        handle: logo_sm
+        field:
+          mode: grid
+          container: assets
+          folder: /
+          restrict: false
+          allow_uploads: true
+          max_files: 1
+          display: 'Logo:Mobile'
+          type: assets
+          icon: assets
+          listable: hidden
+          width: 50
   error_messages:
     display: 'Error messages'
     fields:

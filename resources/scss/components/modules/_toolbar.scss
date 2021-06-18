@@ -1,0 +1,58 @@
+.toolbar {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  z-index: 101;
+  --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  right: 0.25rem;
+  top: 0.25rem;
+  position: fixed;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  display: flex;
+
+  &.visible {
+    opacity: 1;
+  }
+
+  &.hidden {
+    opacity: 0;
+  }
+
+  .edit {
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    right: 0.25rem;
+    top: 0.25rem;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    display: flex;
+  }
+
+  button {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  svg {
+    width: var(--space-2);
+    height: var(--space-2);
+    fill: currentColor;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .block {
+    display: block;
+  }
+}

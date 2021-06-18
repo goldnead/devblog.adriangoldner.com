@@ -1,0 +1,35 @@
+@mixin generateSpacings($limit: 24) {
+  @for $i from 1 through $limit {
+    --space-#{$i}: calc(var(--baseline) * #{$i});
+  }
+}
+
+:root {
+  // Spacing values
+  --space-base: calc(var(--baseline) / 2);
+  // Baseline relative Spacing
+  // The baseline is a third of a line-height (8px)
+  // Use this spacings to maintain a consistent vertical rhythm
+  --space-1: var(--baseline);
+  --space-2: calc(var(--baseline) * 2);
+  --space-3: calc(var(--baseline) * 3);
+  --space-4: calc(var(--baseline) * 4);
+  --space-5: calc(var(--baseline) * 5);
+  --space-6: calc(var(--baseline) * 6);
+  --space-7: calc(var(--baseline) * 7);
+  --space-8: calc(var(--baseline) * 8);
+  --space-9: calc(var(--baseline) * 9);
+  --space-10: calc(var(--baseline) * 10);
+  --space-11: calc(var(--baseline) * 11);
+  --space-12: calc(var(--baseline) * 12);
+  --space-13: calc(var(--baseline) * 13);
+  --space-14: calc(var(--baseline) * 14);
+  --space-15: calc(var(--baseline) * 15);
+  --space-16: calc(var(--baseline) * 16);
+  --space-17: calc(var(--baseline) * 17);
+
+  @include generateSpacings(24);
+
+  // spacing vor Grids and other Stuff.
+  --space-component: var(--space-6);
+}

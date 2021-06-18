@@ -1,4 +1,6 @@
 title: Configuration
 data:
+  logo_lg: logo.svg
+  logo_sm: Logo_Mobile.svg
   404_title: 'Page not found'
   404_text: 'The page you were looking for is not available (anymore).'

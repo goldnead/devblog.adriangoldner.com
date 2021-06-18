@@ -1,0 +1,383 @@
+// Article Page Styles
+.articlePage {
+  // Cover-Image Container
+  .articlePage-cover {
+    // add segment-behaviour
+    @extend .segment;
+    // + narrow width
+    @extend .segment--narrow;
+    margin-bottom: var(--space-2);
+
+    // Cover Image Styles
+    .articlePage-coverImage {
+      display: block;
+      position: relative;
+      // implement aspect-ratio behaviour so the site won't jump when the image
+      // takes a bit longer to load
+      @extend .aspect-ratio;
+      --aspect-ratio: 175/100;
+      // Image placeholder with a subtle gradient loading animation
+      background-image: linear-gradient(
+        90deg,
+        #e4e4e4 0%,
+        #e1e1e1 40%,
+        #d4d4d4 60%,
+        #e4e4e4 100%
+      );
+      background-position: 0px 0px;
+      background-repeat: repeat;
+      animation: animatedBackground 5s linear infinite;
+
+      // The image itself
+      // Allow the object-fit value to be overwritten via custom props so
+      // we can add glide values later if needed.
+      img {
+        object-fit: var(--object-fit, cover);
+        height: 100%;
+        width: 100%
+      }
+
+      @include breakpoint(md) {
+        margin-bottom: var(--space-2);
+      }
+    }
+
+    // Alternate wide cover image
+    &--wide {
+      --segment-max-width: 981px;
+      margin-bottom: var(--space-4);
+
+      .articlePage-coverImage {
+        --aspect-ratio: 981/411;
+      }
+    }
+  }
+
+  // practice-areas
+  .articlePage-term {
+    color: var(--color-black-60);
+    --link-color: var(--color-black-60);
+    // Set Typography
+    @extend .v-rhythm;
+    --font-size: 13px;
+    --baseline-multiplier: 2;
+
+    @include breakpoint(md) {
+      --font-size: var(--font-size-base);
+      --baseline-multiplier: 2;
+      --margin-bottom: var(--space-1);
+    }
+
+    // If the term is the first child of its parent, we don't have a cover
+    // image, so set some top paddings
+    &--first {
+      padding-top: calc(var(--space-6) + var(--baseline-offset));
+    }
+  }
+
+  &--recent-work {
+    .articlePage-term {
+      margin-top: var(--space-8);
+    }
+  }
+
+  // Article Title
+  h1 {
+    @extend .v-rhythm;
+    --margin-bottom: var(--space-2);
+    --font-size: var(--font-size-lg);
+    --baseline-multiplier: 4;
+    font-weight: 600;
+    color: var(--color-primary);
+
+    @include breakpoint(md) {
+      --font-size: var(--font-size-xxl);
+      --margin-bottom: var(--space-4);
+      --baseline-multiplier: 6;
+    }
+  }
+
+  // Meta info. Authors, Date & Socials
+  .articlePage-meta {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @include breakpoint(md) {
+      flex-direction: row;
+    }
+
+    .date {
+      font-style: italic;
+    }
+
+    // Set Typo for text in meta container
+    .date,
+    .author {
+      @extend .v-rhythm;
+      --font-size: var(--font-size-base);
+      --baseline-multiplier: 2;
+      --margin-bottom: var(--space-3);
+      --link-font-weight: 600;
+    }
+
+    .socialMedia {
+      justify-content: center;
+      align-items: flex-start;
+      text-align: center;
+      width: 100%;
+      margin-top: var(--space-2);
+      margin-bottom: var(--space-2);
+
+      @include breakpoint(md) {
+        width: auto;
+        margin-top: -2px;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // social media component
+  .socialMedia {
+    display: flex;
+    .socialMedia-icon {
+      margin-left: 22px;
+
+      @include breakpoint(md) {
+        margin-left: 12px;
+      }
+      svg {
+        height: 21px;
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  // Finally the main content
+  .articlePage-content {
+    // remove margins of first and last elements
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+    // Apply Typo styles to content elements
+    .text {
+      > p,
+      > ul li,
+      > ol li {
+        @extend .v-rhythm;
+        --font-size: 17px;
+        --baseline-multiplier: 3;
+        //--margin-bottom: var(--space-3);
+      }
+    }
+
+    // lists
+    ol,
+    ul {
+      list-style: none;
+
+      li {
+        position: relative;
+        padding-left: var(--space-2);
+      }
+    }
+
+    ul {
+      --bullet-size: 6px;
+
+      // Bullet styles
+      li::before {
+          content: '';
+          border-radius: 50%;
+          color: var(--color-primary);
+          background-color: currentColor;
+          border: 2px solid currentColor;
+          top: calc(var(--baseline) * var(--baseline-multiplier) / 2 + var(--baseline-offset) - var(--bullet-size) / 2);
+
+          width: var(--bullet-size);
+          height: var(--bullet-size);
+          display: inline-flex;
+          vertical-align: middle;
+          position: absolute;
+          left: 1px;
+        }
+    }
+
+    // nub ered lists
+    ol li {
+        counter-increment: list-items;
+        &::before {
+          content: counter(list-items) ".";
+          justify-content: center;
+          align-items: center;
+          display: inline-block;
+          position: absolute;
+          left: 0;
+          top: var(--baseline-offset);
+          color: var(--color-black-80);
+          -webkit-font-smoothing: antialiased;
+        }
+      }
+
+    // horizontal dividers
+    hr {
+      margin: var(--space-3) auto;
+    }
+
+    // Sub-Headings
+    h2,
+    h3 {
+      @extend .v-rhythm;
+      --baseline-multiplier: 3;
+      --margin-bottom: var(--space-3);
+      --font-size: var(--font-size-md);
+      font-weight: 700;
+
+      @include breakpoint(md) {
+        --font-size: var(--font-size-lg);
+      }
+    }
+
+    h3 {
+      --font-size: var(--font-size-base);
+      --baseline-multiplier: 3;
+      --margin-bottom: var(--space-1);
+    }
+
+    // Images
+    figure {
+      img {
+        margin-bottom: var(--space-1);
+      }
+
+      figcaption {
+        text-align: center;
+        color: var(--color-black-60);
+        --font-size: var(--font-size-sm);
+        @extend .v-rhythm;
+        --baseline-multiplier: 2;
+
+        @include breakpoint(md) {
+          font-size: inherit;
+        }
+      }
+    }
+  }
+
+  // Article Footer with authors & socials
+  .articlePage-footer {
+    margin-bottom: var(--space-9);
+
+    @include breakpoint(md) {
+      margin-bottom: var(--space-9);
+    }
+
+    .socialMedia {
+      justify-content: center;
+      margin-bottom: var(--space-9);
+    }
+  }
+
+  // Authors list
+  .articlePage-authors {
+    h4 {
+      text-transform: uppercase;
+      color: var(--color-black);
+      letter-spacing: 1px;
+      font-weight: 600;
+      @extend .v-rhythm;
+      --margin-bottom: var(--space-3);
+      --baseline-multiplier: 3;
+      --font-size: var(--font-size-base);
+    }
+
+    &--contact {
+      margin-top: var(--space-6);
+    }
+
+    .articlePage-authorList {
+      display: flex;
+      flex-direction: column;
+
+      .author {
+        display: flex;
+        margin-bottom: var(--space-6);
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        .author-avatar {
+          height: var(--space-9);
+          width: var(--space-9);
+          flex-shrink: 0;
+          border-radius: 100%;
+          overflow: hidden;
+          margin-right: var(--space-3);
+
+          @include breakpoint(md) {
+            height: var(--space-12);
+            width: var(--space-12);
+          }
+
+          img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+          }
+        }
+
+        .author-details {
+          .author-name {
+            @extend .v-rhythm;
+            --font-size: var(--font-size-base);
+            --baseline-multiplier: 2;
+            font-weight: 600;
+          }
+
+          .author-role {
+            --margin-bottom: var(--space-1);
+          }
+
+          .author-role,
+          .author-telephone,
+          .author-email,
+          .author-info {
+            @extend .v-rhythm;
+            --link-color: var(--color-black-60);
+            --font-size: 13px;
+            --baseline-multiplier: 2;
+            color: var(--color-black-60);
+            font-weight: 400;
+
+            @include breakpoint(md) {
+              --font-size: var(--font-size-sm);
+            }
+
+            svg.icon {
+              color: var(--color-primary);
+              display: inline-block;
+              fill: currentColor;
+              height: 12px;
+              width: 12px;
+              // align icon vertically centered
+              transform: translateY(3px);
+              line-height: 1;
+              flex-shrink: 0;
+              max-width: initial;
+              margin-right: var(--space-1);
+            }
+          }
+        }
+      }
+    }
+  }
+}

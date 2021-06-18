@@ -1,0 +1,47 @@
+:root {
+  --font-family-base: "PT Serif", serif;
+  --font-family-heading: "Spectral", serif;
+  --font-family-mono: "PT Mono";
+  --font-family-sans: "Karla", serif;
+
+  --font-weight-heading: 900;
+  --font-weight-text: 500;
+  --font-weight-mono: 500;
+  --font-weight-sans: 600;
+
+  --text-transform-heading: none;
+
+  --font-size-base: 1rem;
+  --font-size-text: 20px;
+
+  // Typography Baseline
+  --v-rhythm-base: 4;
+  --baseline: calc(4 * 1px);
+  --line-height-base: calc(var(--baseline) * 3);
+
+  // The Cap-Height is the height of the capital letter relative to its
+  // line-height. This varies between font sets and can be calculated here:
+  // Tha Cap-Height can be calculated here: https://codepen.io/phun-ky/pen/MWWezBb
+  // It is used to calculate the real spacings in relation to the actual
+  // typeface dimensions since line-heights in css alwys have top and bottom
+  // spacings.
+  --cap-height-heading: 0.596;
+  --cap-height-text: 0.73;
+  --cap-height-mono: 0.63;
+  --cap-height-sans: 0.63;
+
+  --cap-height: var(--cap-height-text);
+
+  --font-scale-ratio: 1.23;
+  // Our main Font-Sizes
+  --font-size-0: calc(var(--font-size-base) / var(--font-scale-ratio) / var(--font-scale-ratio));
+  --font-size-1: var(--font-size-base);
+  --font-size-2: calc(var(--font-size-1) * var(--font-scale-ratio));
+  --font-size-3: calc(var(--font-size-2) * var(--font-scale-ratio));
+  --font-size-4: calc(var(--font-size-3) * var(--font-scale-ratio));
+  --font-size-5: calc(var(--font-size-4) * var(--font-scale-ratio));
+  --font-size-6: calc(var(--font-size-5) * var(--font-scale-ratio));
+  --font-size-7: calc(var(--font-size-6) * var(--font-scale-ratio));
+  --font-size-8: calc(var(--font-size-7) * var(--font-scale-ratio));
+  --font-size-9: calc(var(--font-size-8) * var(--font-scale-ratio));
+}

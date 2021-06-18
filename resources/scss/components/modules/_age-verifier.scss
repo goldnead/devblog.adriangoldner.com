@@ -1,0 +1,56 @@
+.age-verifier {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: var(--z-index-age);
+  padding: var(--space-4);
+
+  .age-verifier__modal {
+    background-color: var(--color-sand);
+    --color-heading: var(--color-dark);
+    border-radius: 4px;
+    max-width: 500px;
+    width: 100%;
+    padding: var(--space-2);
+    text-align: center;
+
+    h5 {
+      --margin-bottom: var(--space-2);
+    }
+  }
+
+  .age-verifier__buttons {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--space-4);
+    width: 100%;
+
+    @include breakpoint(xs) {
+      flex-direction: row;
+    }
+
+    .button--cancel {
+      width: 100%;
+      margin-bottom: var(--space-2);
+      @include breakpoint(xs) {
+        width: 35%;
+        margin-bottom: 0;
+      }
+    }
+
+    .button--confirm {
+      width: 100%;
+      @include breakpoint(xs) {
+          margin-left: var(--space-2);
+          width: 60%;
+          min-width: 300px;
+      }
+    }
+  }
+}

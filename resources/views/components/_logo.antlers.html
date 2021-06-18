@@ -1,5 +1,9 @@
 {{# Site logo with width attribute. #}}
 <a aria-label="Logo {{ config:app:name }}" href="{{ site:url }}">
-    Coding For Websites <br>
-    <small>by Adrian Goldner</small>
+    <span class="logo--desktop">
+      {{ svg src="{configuration:logo_lg}"}}
+    </span>
+    <span class="logo--mobile">
+      {{ svg src="{configuration:logo_sm}"}}
+    </span>
 </a>

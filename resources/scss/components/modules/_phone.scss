@@ -1,0 +1,57 @@
+.phone {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  svg {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__smartphone {
+    width: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .instagram,
+    .facebook,
+    .tiktok {
+      transition: opacity .25s;
+      position: relative;
+      cursor: pointer;
+    }
+  }
+
+  &__lines {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-42%, -42%);
+  }
+
+  &__button {
+    position: absolute;
+    width: 80px;
+    transition: transform .25s var(--bounce);
+
+    &:hover {
+      transform: scale(1.3);
+    }
+
+    &--facebook {
+      top: 20%;
+      right: 18%;
+    }
+    &--instagram {
+      top: 14%;
+      left: 23%;
+    }
+    &--tiktok {
+      bottom: 2%;
+      right: 47%;
+    }
+  }
+}

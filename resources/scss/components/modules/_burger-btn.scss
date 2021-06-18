@@ -1,0 +1,94 @@
+:root {
+  --burger-btn-size: 32px;
+  --burger-btn-icon-size: 32px;
+  --burger-btn-icon-stroke: 4px;
+}
+
+.burger-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--burger-btn-size);
+  height: var(--burger-btn-size);
+  color: var(--burger-btn-color, var(--color-black));
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  .icon {
+    position: relative;
+    display: block;
+    font-size: var(--burger-btn-icon-size);
+    width: 1em;
+    height: var(--burger-btn-icon-stroke);
+    color: inherit;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    transform: scale(1);
+
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-image: inherit;
+      border-radius: inherit;
+    }
+  }
+
+  /* menu to 'X' close */
+  .icon--close {
+    background-size: 100% 100%;
+    will-change: transform, background-size;
+    transition: transform .2s, background-size .2s;
+
+    .burger-btn:active & {
+      transform: scale(0.9);
+    }
+
+    &::before, &::after {
+      will-change: inherit;
+      transition: inherit;
+    }
+
+    &::before { /* line top */
+      transform: translateY(-0.25em) rotate(0);
+    }
+
+    &::after { /* line bottom */
+      transform: translateY(0.25em) rotate(0);
+    }
+
+    &--plus {
+      background-size: 0% 100%;
+      transform: rotate(45deg);
+
+      &::before {
+        transform: translateY(0) rotate(45deg);
+      }
+
+      &::after {
+        transform: translateY(0) rotate(-45deg);
+      }
+    }
+  }
+}
+
+.burger-btn--state-b {
+  .icon--close {
+    background-size: 0% 100%;
+    transform: rotate(0deg);
+
+    &::before {
+      transform: translateY(0) rotate(45deg);
+    }
+
+    &::after {
+      transform: translateY(0) rotate(-45deg);
+    }
+  }
+}

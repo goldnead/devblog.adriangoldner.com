@@ -4,27 +4,23 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-        <link rel="stylesheet" href="{{ mix src='css/site.css' }}">
 
-        <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
+        {{ vite }}
 
         {{# Replace the following line with the SEO Pro or Aardvark SEO tag if you want to use an addon for SEO. Also remove the seo section in you page blueprint.#}}
         {{ partial:snippets/seo }}
 
         {{ partial:snippets/favicons }}
     </head>
-    <body class="min-h-screen bg-white">
-        {{ partial:components/toolbar }}
-
+    <body>
         {{# Remove the following line if you want to use an addon for SEO. #}}
         {{ yield:seo_body }}
 
-        {{ partial:layout/header }}
+        {{ partial:navigation/main }}
+
         {{ template_content }}
         {{ partial:layout/footer }}
 
         {{ partial:snippets/analytics }}
-        <script src="{{ mix src='/js/site.js' }}"></script>
     </body>
 </html>
